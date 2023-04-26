@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+        }
+
+        .box {
+            width: 60%;
+            margin: 200px auto;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .item img {
+            width: 100%;
+            height: ;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="item">
+            <a href="https:\/\/movie.douban.com\/subject\/35588155">
+                <img src="https:\/\/img9.doubanio.com\/view\/photo\/s_ratio_poster\/public\/p2888918765.jpg" alt="">
+            </a>
+            <p>
+                film
+                <strong>6.6</strong>
+            </p>
+        </div>
+    </div>
+    <!-- 引入axios -->
+    <script>
+        axios.get('http://localhost:3000/posts').then(res => {
+            const data = res.data
+            data.forEach(item => {
+
+            });
+        })
+    </script>
+</body>
+
+</html>

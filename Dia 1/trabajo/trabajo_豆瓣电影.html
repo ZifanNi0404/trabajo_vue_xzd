@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="never">
+    <title>Document</title>
+    <style>
+        #movie-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            justify-content: space-around;
+            gap: 27px;
+            margin: 20px;
+            height: 100%;
+            width: 70%;
+            margin: 150px auto;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            align-items: center;
+            justify-items: center;
+
+        }
+
+        .movie {
+            display: flex;
+            flex-direction: column;
+            width: 120px;
+            height: 230px;
+            /* padding: 20px; */
+            border-radius: 5px;
+            /* overflow: hidden; */
+            position: relative;
+        }
+
+        .movie img {
+            width: 100%;
+            height: auto;
+
+            width: 115px;
+            height: 172px;
+        }
+
+        .stateBar {
+            position: absolute;
+            left: 140px;
+            z-index: 1;
+            width: 180px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 5px;
+            overflow: hidden;
+            background: whitesmoke;
+        }
+
+        p.title {
+            font-size: 13px;
+            color: #37a;
+        }
+
+        p.score {
+            font-size: 13px;
+            color: #e09015;
+        }
+
+        .movieDown {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="movie-list">
+    </div>
+    <script>
+        const movieList = document.getElementById('movie-list');
+
+        fetch('http://localhost:4000/posts')
+            .then(response => response.json())
+            .then(data => {
+                const movies = data.slice(0, 10); // 只获取前10部电影
+
+                movies.forEach(movie => {
+                    const movieDiv = document.createElement('div');
+                    movieDiv.classList.add('movie');
+
+                    const poster = document.createElement('img');
+                    poster.src = movie.info.imgurl;
+                    poster.alt = movie.title;
+                    movieDiv.appendChild(poster);
+
+                    //const title = document.createElement('h3');
+
+                    //const summary = document.createElement('p');
+
+                    //title bar
+                    const movieDown = document.createElement('div');
+                    movieDown.innerHTML = `<p class=title>${movie.title}</p><p class=score>${movie.info.pingfen}</p>`;
+                    movieDown.className = 'movieDown';
+
+                    //状态栏
+                    const stateBar = document.createElement('div');
+                    stateBar.innerHTML = `<p id=text>${movie.info.yanyuan}</p><p>${movie.info.pingjia}</p>`;
+                    stateBar.style.display = 'none';
+                    stateBar.className = 'stateBar';
+
+                    movieDiv.appendChild(stateBar)
+                    movieDiv.appendChild(movieDown)
+                    movieList.appendChild(movieDiv);
+                    movieDiv.onmouseenter = function () {
+                        stateBar.style.display = 'block'
+                    }
+                    movieDiv.onmouseleave = function () {
+                        stateBar.style.display = 'none'
+                    }
+
+                    //转换成分隔符
+                    // const paragraph = document.querySelector('#text');
+                    // const text = paragraph.textContent;
+                    // const characters = text.split('/');
+
+                    // let html = '/';
+
+                    // for (let i = 0; i < characters.length; i++) {
+                    //     if (characters[i] === '/') {
+                    //         html += '/';
+                    //     } else {
+                    //         html += `<span>${characters[i]}</span>`;
+                    //     }
+                    // }
+
+
+
+                });
+            })
+            .catch(error => console.error('Error fetching movies:', error));
+
+            //鼠标移入事件
+
+
+    </script>
+</body>
+
+</html>

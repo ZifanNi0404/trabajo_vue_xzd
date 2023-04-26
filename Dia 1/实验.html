@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>这是一段\/文\/本，需\/要\/添\/加\/分\/隔\/符。</p>
+    <script>
+
+        const paragraph = document.querySelector('p');
+        const text = paragraph.textContent;
+        const characters = text.split('/');
+
+        let html = '/';
+
+        for (let i = 0; i < characters.length; i++) {
+            if (characters[i] === '/') {
+                html += '/';
+            } else {
+                html += `<span>${characters[i]}</span>`;
+            }
+        }
+
+        paragraph.innerHTML = html;
+
+    </script>
+</body>
+
+</html>

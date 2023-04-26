@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="never">
+    <title>movie-list</title>
+    <style>
+        #movie-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+            margin: 20px;
+        }
+
+        .movie {
+            display: flex;
+            flex-direction: column;
+            width: 250px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .StatusBar {
+            display: flex;
+            flex-direction: column;
+            width: 250px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .movie h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .movie img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .movie p {
+            margin: 0;
+            font-size: 1rem;
+            text-align: justify;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="movie-list"></div>
+
+    <script>
+        const movieList = document.getElementById('movie-list');
+
+        fetch('https://api.vvhan.com/api/douban')
+            .then(response => response.json())
+            .then(data => {
+                const movies = data.data.slice(0, 10); // 只获取前10部电影
+
+                movies.forEach(movie => {
+                    const movieDiv = document.createElement('div');
+                    movieDiv.classList.add('movie');
+
+                    const title = document.createElement('h3');
+                    title.textContent = movie.title;
+                    movieDiv.appendChild(title);
+
+                    const poster = document.createElement('img');
+                    poster.src = movie.info.imgurl;
+                    poster.alt = movie.title;
+                    movieDiv.appendChild(poster);
+                    console.log(movie);
+
+                    const summary = document.createElement('p');
+                    summary.textContent = movie.info.pingfen;
+                    movieDiv.appendChild(summary);
+
+                    movieList.appendChild(movieDiv);
+                });
+
+                const StatusBars = data.data.slice(0, 10);
+                StatusBars.forEach = document.createElement('bar');
+                movieBar.classList.add('StatusBar');
+                const actor = document.createElement('actor');
+                actor.textContent = movie.info.yanyuan
+                StatusBar.appendChild(actor);
+
+                const evaluate = document.createElement('actor');
+                evaluate.textContent = movie.info.pingjia
+                    .appendChild(evaluate);
+
+                movieList.appendChild(StatusBar);
+
+            })
+            //.catch(error => console.error('Error fetching movies:', error));
+
+    </script>
+</body>
+
+</html>

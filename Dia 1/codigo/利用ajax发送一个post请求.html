@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>今天的励志话</h1>
+    <ul>
+
+    </ul>
+    <button onclick="init()">点我离职</button>
+    <script>
+        function init() {
+            //利用ajax向接口发送请求 将返回那句中文渲染到页面
+            //1 生成一个XMLHttpRequest对象
+            let xhr = new XMLHttpRequest()
+            //2 准备发送请求 调用open方法来发送请求 第一个参数是请求方法 第二个参数是请求地址 请求是异步
+            //post请求携带的数据是通过请求体传递 放在send方法的参数内
+            xhr.open('POST' , "http://localhost:3000/posts")
+            //3 发送请求
+            //如果发送的是post请求 必须设置请求头
+            xhr.setRequestHeader('content-Type','application/json') //一定要写
+            xhr.send(JSON.stringify({
+                content:'456'
+            }))
+            //4 监听请求状态
+            xhr.onreadystatechange = function () {
+                //console.log(xhr.readyState);
+                if (xhr.readyState === 4){
+                    //获得接口中的最新数据内容 渲染到页面上
+                    let xhr = new XMLHttpRequest()
+                    xhr.open('Get',"http://localhost:3000/posts")
+                    xhr.send(JSON.stringify({
+                        content:'456' + Math.random()
+                    }))
+                    //4,监听请求
+                    
+            }
+        }
+        }
+    </script>
+</body>
+
+</html>

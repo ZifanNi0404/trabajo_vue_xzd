@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1></h1>
+    <script>
+        //fetch返回的是一个promise对象
+            fetch("http://localhost:3000/posts").then(res =>
+                res.json()
+            ).then(res => {
+                document.querySelector('h1').innerHTML = res.data.zh
+            })
+        
+
+
+
+    </script>
+</body>
+
+</html>

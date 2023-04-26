@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="module">
+        import { a, x } from './2-1.a.js'
+        import fn from './2-1.a.js'
+        import { c, x as qie } from './2-2.b.js'
+        console.log(c, qie);
+        console.log(fn(), a, x);
+        //这里的fn可以改任意名字不受影响 且原文件可不改
+    </script>
+</body>
+
+</html>

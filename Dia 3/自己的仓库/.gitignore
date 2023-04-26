@@ -1,0 +1,2 @@
+# 这个文件可以记录那些不被git追踪的文件
+node_module.txt
